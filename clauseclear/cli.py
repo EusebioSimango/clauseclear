@@ -8,7 +8,7 @@ from clauseclear.extract import ExtractError
 from clauseclear.model import ModelError, configured_model
 from clauseclear.pipeline import review_path
 from clauseclear.report import to_markdown
-from clauseclear.telemetry import init_sentry
+from clauseclear.telemetry import dump_local_trace, init_sentry
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -22,6 +22,11 @@ def main(argv: list[str] | None = None) -> int:
         help="Ollama model tag (default: env OLLAMA_MODEL or gemma3:1b)",
     )
     parser.add_argument("-o", "--out", help="Write markdown report to this path")
+    parser.add_argument(
+        "--trace",
+        metavar="PATH",
+        help="Write a redacted span dump (no contract text) to this JSON file",
+    )
     args = parser.parse_args(argv)
 
     init_sentry()
@@ -30,6 +35,10 @@ def main(argv: list[str] | None = None) -> int:
     except (ExtractError, ModelError, FileNotFoundError, ValueError) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 1
+
+    if args.trace:
+        dump_local_trace(args.trace)
+        print(f"wrote redacted trace {args.trace}", file=sys.stderr)
 
     markdown = to_markdown(report)
     if args.out:

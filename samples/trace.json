@@ -1,0 +1,36 @@
+[
+  {
+    "op": "clauseclear",
+    "name": "extract",
+    "tags": {
+      "kind": "file"
+    },
+    "duration_ms": 0.3
+  },
+  {
+    "op": "clauseclear",
+    "name": "infer",
+    "tags": {
+      "attempt": "1",
+      "model": "gemma3:1b"
+    },
+    "duration_ms": 30607.1
+  },
+  {
+    "op": "clauseclear",
+    "name": "infer",
+    "tags": {
+      "attempt": "2",
+      "model": "gemma3:1b"
+    },
+    "duration_ms": 27566.9
+  },
+  {
+    "op": "clauseclear",
+    "name": "validate",
+    "tags": {
+      "attempt": "2"
+    },
+    "duration_ms": 18.7
+  }
+]

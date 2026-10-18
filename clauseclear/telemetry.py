@@ -1,14 +1,17 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import os
+import time
 from contextlib import contextmanager
-from typing import Iterator
+from typing import Any, Iterator
 
 import sentry_sdk
 from sentry_sdk.types import Event, Hint
 
 _booted = False
+_local_spans: list[dict[str, Any]] = []
 
 
 def _fingerprint(text: str) -> str:
@@ -48,10 +51,25 @@ def init_sentry() -> bool:
 @contextmanager
 def span(name: str, **tags: str | int | float) -> Iterator[None]:
     init_sentry()
+    started = time.perf_counter()
+    record = {"op": "clauseclear", "name": name, "tags": {k: str(v) for k, v in tags.items()}}
     with sentry_sdk.start_span(op="clauseclear", name=name) as current:
         for key, value in tags.items():
             current.set_tag(key, str(value))
-        yield
+        try:
+            yield
+        finally:
+            record["duration_ms"] = round((time.perf_counter() - started) * 1000, 1)
+            _local_spans.append(record)
+
+
+def dump_local_trace(path: str | None = None) -> list[dict[str, Any]]:
+    """Redacted span tree for the write-up. Never includes contract text."""
+    payload = list(_local_spans)
+    if path:
+        with open(path, "w", encoding="utf-8") as handle:
+            json.dump(payload, handle, indent=2)
+    return payload
 
 
 def hash_source(source: str) -> str:
