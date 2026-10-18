@@ -1,0 +1,32 @@
+[project]
+name = "clauseclear"
+version = "0.1.0"
+description = "Local-first contract checklist for freelancers, powered by an open-weight Gemma model."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "ClauseClear contributors" }]
+dependencies = [
+  "pypdf>=5.1.0",
+  "pydantic>=2.10.0",
+  "httpx>=0.28.0",
+  "streamlit>=1.40.0",
+  "sentry-sdk>=2.19.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.3.0"]
+
+[project.scripts]
+clauseclear = "clauseclear.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["clauseclear*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

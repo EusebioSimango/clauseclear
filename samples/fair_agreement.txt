@@ -1,0 +1,21 @@
+FREELANCE SERVICES AGREEMENT
+
+This agreement is between River Studio Ltd ("Client") and the freelancer named below ("Freelancer").
+
+1. Scope. Freelancer will design and implement a marketing landing page, including two rounds of revisions. Additional revisions are billed at USD 90 per hour after written approval.
+
+2. Fee and payment. The project fee is USD 3,200. Client will pay 40% on kickoff and the remaining 60% within fourteen (14) days of delivery of the files listed in Schedule A. Invoices overdue by more than fourteen days accrue 1.5% interest per month.
+
+3. Intellectual property. Client receives a worldwide license to use the final deliverables for the project after full payment. Freelancer retains ownership of pre-existing tools, frameworks, and unused concepts. Until payment clears, Freelancer retains all rights in the work product.
+
+4. Termination. Either party may terminate for convenience with seven (7) days' written notice. Client will pay for work completed and accepted up to the termination date, based on hours logged or percent complete, whichever is lower.
+
+5. Non-exclusivity. Freelancer may work with other clients, including competitors, provided Freelancer does not disclose Client's confidential information.
+
+6. Liability. Each party's aggregate liability under this agreement is limited to the fees paid in the twelve months before the claim, except for confidentiality breaches or unpaid invoices. Neither party is liable for indirect damages.
+
+7. Portfolio. Freelancer may show the work in a portfolio after launch, unless Client objects in writing before launch for legitimate confidentiality reasons.
+
+8. Governing law. England and Wales. The parties will try mediation before court.
+
+Schedule A. Final Figma file, exported assets, and a deployed staging URL.

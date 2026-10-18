@@ -1,0 +1,25 @@
+INDEPENDENT CONTRACTOR AGREEMENT
+
+This Independent Contractor Agreement (the "Agreement") is entered into as of 18 October 2026 between Northwind Brands LLC ("Client") and the undersigned freelancer ("Contractor").
+
+1. Services. Contractor will perform design and frontend implementation work as described in emails from Client from time to time, including unlimited rounds of revisions until Client is satisfied.
+
+2. Compensation. Client shall pay Contractor a fixed fee of USD 4,500 for the project. Payment is due ninety (90) days after Client's written acceptance of the final deliverables. Client may withhold payment if, in Client's sole discretion, the work is not satisfactory.
+
+3. Late work. If Contractor delivers after any date named by Client, Client may reduce the fee by ten percent (10%) per day of delay, without a cap.
+
+4. Intellectual property. Upon commencement of work, and whether or not Contractor has been paid, Contractor hereby irrevocably assigns to Client all right, title, and interest in and to all work product, including source code, designs, drafts, notes, and unused concepts, throughout the world, in perpetuity. Contractor waives any moral rights to the extent permitted by law.
+
+5. Exclusivity. For twelve (12) months after the last delivery, Contractor shall not perform similar services for any company that competes with Client in any market, worldwide.
+
+6. Termination. Client may terminate this Agreement at any time, for any reason or no reason, with immediate effect and without payment for work in progress. Contractor may terminate only upon ninety (90) days' written notice, and only after completing all outstanding requests.
+
+7. Liability. Contractor shall indemnify and hold harmless Client against any and all claims, including Client's own negligence, with no cap on liability. Client's aggregate liability under this Agreement shall not exceed one hundred US dollars (USD 100).
+
+8. Non-disparagement and publicity. Contractor shall not publicly mention the project or Client without prior written consent. Client may use Contractor's name and likeness in marketing without further approval or payment.
+
+9. Governing law. This Agreement is governed by the laws of the State of Delaware. Any dispute shall be resolved solely in courts located in Wilmington, Delaware. Contractor waives any right to a jury trial.
+
+10. Entire agreement. This Agreement is the entire agreement. Client may modify it by email. Contractor's continued work constitutes acceptance of any modification.
+
+Acknowledged and agreed.
