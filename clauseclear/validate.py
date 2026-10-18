@@ -51,7 +51,15 @@ def _score(quote: str, span: str) -> float:
     if not significant:
         significant = q_tokens
     overlap = len(significant & s_tokens) / max(len(significant), 1)
-    return 0.6 * overlap + 0.4 * seq
+    score = 0.6 * overlap + 0.4 * seq
+    distinctive = {
+        tok
+        for tok in q_tokens
+        if any(ch.isdigit() for ch in tok) or "$" in tok
+    }
+    if distinctive & s_tokens:
+        score += 0.3
+    return min(score, 1.0)
 
 
 def snap_quote_to_source(quote: str, source: str) -> str | None:

@@ -14,6 +14,14 @@ The product is the **validator**, not the chatbot. Every quote the model cites h
 
 Measured on this laptop (no GPU, 16 GB RAM, Ollama 0.35): `gemma3:1b` reserved **880 MB** at a 4096-token context (`ollama ps`). The abusive sample (2,554 characters) returned **7 validated quotes, 0 review**, in **56s** over 2 attempts.
 
+## Live demo (sample only)
+
+The public site under [`public/`](public/index.html) is a **hosted front end**. It plays back the bundled sample report. It does not run Gemma and it does not accept uploads. Real review stays on the laptop (`streamlit run app.py` / `python -m clauseclear`).
+
+Intended URL: [https://clauseclear.pythonmozambique.tech](https://clauseclear.pythonmozambique.tech) — a CNAME to the Render static site once the `.tech` DNS zone publishes.
+
+Until then, deploy this repo as a Render **Static Site** (`render.yaml`, publish directory `public`). Do not use Streamlit Community Cloud: it cannot reach local Ollama and is not a prize category.
+
 ## Quick start
 
 ```bash
@@ -50,9 +58,11 @@ export OLLAMA_MODEL=gemma3:4b   # or gemma2:2b, or any OpenAI-compatible tag
 ## Prize categories this project actually uses
 
 - **Best Use of Gemma** — inference is a local Gemma model via Ollama
-- **Best Use of Sentry Agent Tracing** — optional, redacted spans around extract → infer → validate
+- **Best Use of Entire** — agent session embedded in the write-up (unlisted until Make Public)
+- **Best Use of Render** — this sample-only front end, once the Static Site is live
+- **Best Use of a .tech Domain** — only after `https://clauseclear.pythonmozambique.tech` serves the page
 
-No cloud LLM, no Atlas, no GPU droplet. That is the point of the side hustle: client paper stays on the laptop, so the unit economics are electricity rather than per-page API fees.
+Optional Sentry spans exist in the code but are not entered without a DSN and a redacted screenshot. No cloud LLM, no Atlas, no GPU droplet. Client paper stays on the laptop.
 
 ## Tests
 

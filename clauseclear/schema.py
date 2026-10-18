@@ -1,4 +1,6 @@
-from typing import Literal
+from __future__ import annotations
+
+from typing import Any, Literal
 
 from pydantic import BaseModel, Field, field_validator
 
@@ -13,6 +15,91 @@ Category = Literal[
     "other",
 ]
 Risk = Literal["high", "medium", "low", "ok"]
+
+CATEGORIES: tuple[str, ...] = (
+    "payment",
+    "intellectual_property",
+    "exclusivity",
+    "termination",
+    "late_fees",
+    "scope",
+    "liability",
+    "other",
+)
+RISKS: tuple[str, ...] = ("high", "medium", "low", "ok")
+
+_CATEGORY_ALIASES = {
+    "compensation": "payment",
+    "fee": "payment",
+    "fees": "payment",
+    "invoice": "payment",
+    "ip": "intellectual_property",
+    "ownership": "intellectual_property",
+    "work_product": "intellectual_property",
+    "noncompete": "exclusivity",
+    "non_compete": "exclusivity",
+    "term": "termination",
+    "access": "scope",
+    "services": "scope",
+    "confidentiality": "other",
+    "privacy": "other",
+    "damages": "liability",
+    "indemnity": "liability",
+    "indemnification": "liability",
+}
+
+
+def _first_allowed(raw: str, allowed: tuple[str, ...]) -> str | None:
+    for token in raw.replace("/", "|").replace(",", "|").split("|"):
+        token = token.strip().lower().replace(" ", "_").replace("-", "_")
+        if token in allowed:
+            return token
+        if token in _CATEGORY_ALIASES and _CATEGORY_ALIASES[token] in allowed:
+            return _CATEGORY_ALIASES[token]
+    return None
+
+
+def coerce_category(value: Any) -> str:
+    if not isinstance(value, str):
+        return "other"
+    text = value.strip()
+    if text in CATEGORIES:
+        return text
+    picked = _first_allowed(text, CATEGORIES)
+    if picked:
+        return picked
+    lowered = text.lower().replace(" ", "_")
+    for alias, target in _CATEGORY_ALIASES.items():
+        if alias in lowered:
+            return target
+    return "other"
+
+
+def coerce_risk(value: Any) -> str:
+    if not isinstance(value, str):
+        return "medium"
+    text = value.strip().lower()
+    if text in RISKS:
+        return text
+    return _first_allowed(text, RISKS) or "medium"
+
+
+def coerce_analysis(payload: dict[str, Any]) -> dict[str, Any]:
+    """Repair 1B-model JSON that copies enum unions into fields."""
+    findings = payload.get("findings")
+    if not isinstance(findings, list):
+        return payload
+    cleaned = []
+    for item in findings:
+        if not isinstance(item, dict):
+            continue
+        row = dict(item)
+        row["category"] = coerce_category(row.get("category"))
+        row["risk"] = coerce_risk(row.get("risk"))
+        cleaned.append(row)
+    payload = dict(payload)
+    payload["findings"] = cleaned
+    return payload
 
 
 class Finding(BaseModel):

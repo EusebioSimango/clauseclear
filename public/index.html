@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ClauseClear — local freelance contract checklist</title>
+    <meta
+      name="description"
+      content="ClauseClear reviews freelance agreements with a local Gemma model. This page is a sample-only demo. Your PDF never leaves your laptop."
+    />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect fill='%23ff4b4b' width='32' height='32' rx='6'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='white' font-family='Georgia' font-size='18'%3EC%3C/text%3E%3C/svg%3E" />
+    <style>
+      :root {
+        --bg: #0e1117;
+        --panel: #161b22;
+        --line: #30363d;
+        --text: #e6edf3;
+        --muted: #8b949e;
+        --accent: #ff4b4b;
+        --high: #f85149;
+        --medium: #d29922;
+        --low: #58a6ff;
+        --ok: #3fb950;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.55;
+      }
+      a { color: #79c0ff; }
+      .wrap { max-width: 920px; margin: 0 auto; padding: 1.25rem 1.25rem 4rem; }
+      .banner {
+        background: #241414;
+        border: 1px solid #5c2626;
+        color: #ffd7d7;
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        font-size: 0.95rem;
+      }
+      header { padding: 2.5rem 0 1.5rem; }
+      h1 { font-size: clamp(2rem, 5vw, 3rem); margin: 0 0 0.4rem; letter-spacing: -0.03em; }
+      .lede { font-size: 1.15rem; color: var(--muted); max-width: 40rem; }
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 0.75rem;
+        margin: 1.75rem 0;
+      }
+      .metric {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 0.9rem 1rem;
+      }
+      .metric b { display: block; font-size: 1.35rem; }
+      .metric span { color: var(--muted); font-size: 0.85rem; }
+      nav { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.25rem; }
+      .btn {
+        display: inline-block;
+        background: var(--accent);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 650;
+        padding: 0.65rem 1.05rem;
+        border-radius: 8px;
+      }
+      .btn.ghost {
+        background: transparent;
+        border: 1px solid var(--line);
+        color: var(--text);
+      }
+      section { margin: 2.5rem 0; }
+      h2 { font-size: 1.35rem; margin-bottom: 0.75rem; }
+      pre, .quote {
+        background: #0b0e14;
+        border: 1px solid var(--line);
+        border-left: 3px solid var(--accent);
+        padding: 0.85rem 1rem;
+        border-radius: 6px;
+        overflow-x: auto;
+        white-space: pre-wrap;
+      }
+      pre { border-left-color: var(--line); font-size: 0.9rem; }
+      .finding {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 1rem 1.1rem;
+        margin: 0.85rem 0;
+      }
+      .finding h3 { margin: 0 0 0.6rem; font-size: 1.05rem; }
+      .risk {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        padding: 0.15rem 0.45rem;
+        border-radius: 999px;
+        vertical-align: middle;
+      }
+      .high { color: var(--high); background: rgba(248, 81, 73, 0.12); }
+      .medium { color: var(--medium); background: rgba(210, 153, 34, 0.12); }
+      .low { color: var(--low); background: rgba(88, 166, 255, 0.12); }
+      .ok { color: var(--ok); }
+      footer {
+        color: var(--muted);
+        border-top: 1px solid var(--line);
+        padding-top: 1.25rem;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <p class="banner">
+        This is a <strong>sample-only</strong> front end hosted on Render.
+        Gemma runs in Ollama on your laptop. This URL never receives a real
+        contract, and there is no upload form.
+      </p>
+
+      <header>
+        <h1>ClauseClear</h1>
+        <p class="lede">
+          A freelance-contract checklist powered by a local open-weight model.
+          Every quoted clause has to appear in the source, or the finding is
+          marked review. Not legal advice.
+        </p>
+        <div class="metrics">
+          <div class="metric"><b>7 / 7</b><span>quotes validated</span></div>
+          <div class="metric"><b>56s</b><span>two attempts, CPU only</span></div>
+          <div class="metric"><b>880 MB</b><span>gemma3:1b in Ollama</span></div>
+          <div class="metric"><b>0</b><span>bytes of client paper in the cloud</span></div>
+        </div>
+        <nav>
+          <a class="btn" href="#report">Play the sample report</a>
+          <a class="btn ghost" href="#run">Run it on your laptop</a>
+          <a class="btn ghost" href="https://github.com/EusebioSimango/clauseclear">GitHub</a>
+        </nav>
+      </header>
+
+      <section>
+        <h2>Why it is local</h2>
+        <p>
+          A 15-minute lawyer skim often costs more than the first invoice.
+          Cloud legal tools want the full NDA uploaded. ClauseClear sits in
+          between: cheap enough to sell, private enough to use on a real
+          agreement. The product is the validator, not the chatbot. Small
+          models paraphrase; this one snaps a quote back to the nearest
+          sentence in the contract, or it refuses to pretend.
+        </p>
+      </section>
+
+      <section id="report">
+        <h2>Sample report — abusive_client_agreement.txt</h2>
+        <p>
+          Measured on a 16 GB laptop, no GPU, Ollama 0.35, model
+          <code>gemma3:1b</code>. 2,554 characters. Two attempts.
+          <a href="demo-report.md">Download the markdown</a>.
+        </p>
+        <p>
+          Summary: exclusive design/frontend work, unlimited revisions, IP
+          assignment, and uncapped late fees and indemnity.
+        </p>
+
+        <article class="finding">
+          <h3>Payment <span class="risk high">HIGH</span> <span class="ok">validated</span></h3>
+          <p class="quote">Payment is due ninety (90) days after Client's written acceptance of the final deliverables.</p>
+          <p><strong>Why it matters:</strong> This is a strict deadline for payment, leaving little room for the freelancer to manage cash flow.</p>
+          <p><strong>Ask instead:</strong> Please confirm the payment schedule and provide a detailed breakdown of the deliverables.</p>
+        </article>
+        <article class="finding">
+          <h3>Intellectual property <span class="risk high">HIGH</span> <span class="ok">validated</span></h3>
+          <p class="quote">Contractor hereby irrevocably assigns to Client all right, title, and interest in and to all work product, including source code, designs, drafts, notes, and unused concepts, throughout the world, in perpetuity. Contractor waives any moral rights to the extent permitted by law.</p>
+          <p><strong>Why it matters:</strong> This assignment of IP is a significant risk, potentially leading to the client having complete control over the freelancer's work and future projects.</p>
+          <p><strong>Ask instead:</strong> Can you provide a detailed explanation of the IP ownership transfer and any associated licensing terms?</p>
+        </article>
+        <article class="finding">
+          <h3>Exclusivity <span class="risk high">HIGH</span> <span class="ok">validated</span></h3>
+          <p class="quote">For twelve (12) months after the last delivery, Contractor shall not perform similar services for any company that competes with Client in any market, worldwide.</p>
+          <p><strong>Why it matters:</strong> This exclusivity clause severely restricts the freelancer's ability to work with competitors, potentially impacting income and market share.</p>
+          <p><strong>Ask instead:</strong> Could you clarify the scope of the exclusivity and the potential consequences of breaching this clause?</p>
+        </article>
+        <article class="finding">
+          <h3>Termination <span class="risk medium">MEDIUM</span> <span class="ok">validated</span></h3>
+          <p class="quote">Client may terminate this Agreement at any time, for any reason or no reason, with immediate effect and without payment for work in progress.</p>
+          <p><strong>Why it matters:</strong> The ability to terminate with immediate effect creates a high risk of the client taking back the work and potentially causing financial loss.</p>
+          <p><strong>Ask instead:</strong> What are the conditions under which the client can terminate the agreement?</p>
+        </article>
+        <article class="finding">
+          <h3>Late fees <span class="risk medium">MEDIUM</span> <span class="ok">validated</span></h3>
+          <p class="quote">If Contractor delivers after any date named by Client, Client may reduce the fee by ten percent (10%) per day of delay, without a cap.</p>
+          <p><strong>Why it matters:</strong> This is a substantial late fee, creating a significant financial burden for the freelancer.</p>
+          <p><strong>Ask instead:</strong> What is the maximum amount of the fee reduction and what is the cap on the reduction?</p>
+        </article>
+        <article class="finding">
+          <h3>Scope <span class="risk medium">MEDIUM</span> <span class="ok">validated</span></h3>
+          <p class="quote">Contractor will perform design and frontend implementation work as described in emails from Client from time to time, including unlimited rounds of revisions until Client is satisfied.</p>
+          <p><strong>Why it matters:</strong> The unlimited revisions and the expectation of continuous work create a high risk of the project being unfinished or not meeting the client's expectations.</p>
+          <p><strong>Ask instead:</strong> Can you provide a detailed scope of work and a timeline for completion?</p>
+        </article>
+        <article class="finding">
+          <h3>Liability <span class="risk low">LOW</span> <span class="ok">validated</span></h3>
+          <p class="quote">Contractor shall indemnify and hold harmless Client against any and all claims, including Client's own negligence, with no cap on liability.</p>
+          <p><strong>Why it matters:</strong> This clause provides a significant risk for the freelancer, potentially exposing them to substantial financial loss if the client is liable for damages.</p>
+          <p><strong>Ask instead:</strong> What are the specific types of claims covered by this liability clause?</p>
+        </article>
+      </section>
+
+      <section id="run">
+        <h2>Run Gemma on this machine</h2>
+        <p>
+          Close Streamlit Community Cloud. That host cannot reach local Ollama
+          and is not a prize category. The real app is the CLI and
+          <code>streamlit run app.py</code> on your laptop.
+        </p>
+        <pre>ollama serve
+ollama pull gemma3:1b
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python -m clauseclear samples/abusive_client_agreement.txt
+streamlit run app.py</pre>
+        <p>
+          Intended public URL:
+          <code>https://clauseclear.pythonmozambique.tech</code>
+          (CNAME to this Render static site once the .tech zone publishes).
+        </p>
+      </section>
+
+      <footer>
+        <p>
+          ClauseClear is not a lawyer. MIT license.
+          <a href="https://github.com/EusebioSimango/clauseclear">Source</a>.
+          Hacktoberfest Open-Source AI Challenge Week 2: Side Hustle.
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

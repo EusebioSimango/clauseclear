@@ -30,6 +30,21 @@ def test_paraphrase_snaps_to_real_payment_sentence():
     assert quote_in_source(snapped, CONTRACT)
 
 
+def test_money_amount_snaps_even_when_the_rest_is_paraphrase():
+    from clauseclear.validate import snap_quote_to_source
+
+    contract = (
+        "The Client agrees to pay the Contractor a fixed fee of $1,500.00 USD "
+        "for the complete execution of the Services."
+    )
+    snapped = snap_quote_to_source(
+        "The fixed fee of $1,500.00 USD is a bare minimum and does not protect against disputes.",
+        contract,
+    )
+    assert snapped is not None
+    assert "$1,500.00" in snapped
+
+
 def test_unrelated_invention_does_not_snap():
     from clauseclear.validate import snap_quote_to_source
 

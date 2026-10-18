@@ -9,7 +9,7 @@ import httpx
 from pydantic import ValidationError
 
 from clauseclear import DEFAULT_MODEL
-from clauseclear.schema import Analysis
+from clauseclear.schema import Analysis, coerce_analysis
 
 SYSTEM_PROMPT = """You review freelance client contracts for a solo freelancer.
 Return ONLY valid JSON with this shape:
@@ -17,8 +17,8 @@ Return ONLY valid JSON with this shape:
   "summary": "2-4 sentences in plain English covering money, IP, lock-in, and exit",
   "findings": [
     {
-      "category": "payment|intellectual_property|exclusivity|termination|late_fees|scope|liability|other",
-      "risk": "high|medium|low|ok",
+      "category": "payment",
+      "risk": "high",
       "quote": "exact contiguous phrase copied from the contract",
       "why_it_matters": "one plain-English sentence",
       "ask_instead": "one sentence the freelancer can send to the client"
@@ -27,6 +27,9 @@ Return ONLY valid JSON with this shape:
 }
 Rules:
 - Produce 4 to 6 findings. Prefer the riskiest payment, IP, exclusivity, termination, late-fee, and scope clauses.
+- category must be exactly one of: payment, intellectual_property, exclusivity, termination, late_fees, scope, liability, other
+- risk must be exactly one of: high, medium, low, ok
+- Do not join those labels with the | character.
 - quote MUST be copied character-for-character from the contract. One sentence, 12-400 characters.
 - Bad quote: "the freelancer waits three months to get paid"
 - Good quote: "Payment is due ninety (90) days after Client's written acceptance of the final deliverables."
@@ -49,8 +52,11 @@ def configured_base_url() -> str:
 
 
 def analyze_contract(source: str, extra_instructions: str = "", model: str | None = None) -> Analysis:
-    payload = _chat(source, extra_instructions, model or configured_model())
-    return Analysis.model_validate(payload)
+    payload = coerce_analysis(_chat(source, extra_instructions, model or configured_model()))
+    try:
+        return Analysis.model_validate(payload)
+    except ValidationError as exc:
+        raise ModelError(f"model JSON failed schema: {exc}") from exc
 
 
 def _chat(source: str, extra_instructions: str, model: str) -> dict[str, Any]:
@@ -84,12 +90,7 @@ def _chat(source: str, extra_instructions: str, model: str) -> dict[str, Any]:
 
     data = response.json()
     content = data["choices"][0]["message"]["content"]
-    parsed = _loads_json(content)
-    try:
-        Analysis.model_validate(parsed)
-    except ValidationError as exc:
-        raise ModelError(f"model JSON failed schema: {exc}") from exc
-    return parsed
+    return _loads_json(content)
 
 
 def _loads_json(content: str) -> dict[str, Any]:

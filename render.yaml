@@ -1,0 +1,7 @@
+# Sample-only public front end. Does not run Ollama or accept contracts.
+services:
+  - type: web
+    name: clauseclear
+    runtime: static
+    buildCommand: "true"
+    staticPublishPath: ./public
